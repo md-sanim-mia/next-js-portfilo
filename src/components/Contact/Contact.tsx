@@ -133,7 +133,7 @@ const ModernContactSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-gradient-to-b from-[#1a1d21] via-[#212428] to-[#1a1d21]"
+      className="relative overflow-hidden  py-16 md:py-20 lg:py-24 bg-gradient-to-b from-[#1a1d21] via-[#212428] to-[#1a1d21]"
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -283,63 +283,6 @@ const ModernContactSection = () => {
                   ))}
                 </div>
               </div>
-
-              {/* Map */}
-              {/* <div className="mt-12">
-                <div className="relative backdrop-blur-sm bg-[#2a2d32]/40 rounded-2xl p-1 overflow-hidden">
-                  <div className="absolute inset-0 rounded-2xl overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#ff014f]/20 to-transparent opacity-30"></div>
-                  </div>
-                  <div className="relative rounded-2xl overflow-hidden h-[300px]">
-                    <Image
-                      src="/placeholder.svg?height=600&width=800"
-                      alt="Map location"
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-[#1a1d21]/20 backdrop-blur-[2px]"></div>
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                      <div className="w-8 h-8 bg-[#ff014f] rounded-full flex items-center justify-center animate-pulse">
-                        <MapPin size={20} className="text-white" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
-              <div className="mt-12">
-                <div className="relative backdrop-blur-sm bg-[#2a2d32]/40 rounded-2xl p-6 overflow-hidden">
-                  <div className="absolute inset-0 rounded-2xl overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#ff014f]/20 to-transparent opacity-30"></div>
-                  </div>
-                  <div className="relative rounded-2xl text-white space-y-4 z-10">
-                    <h2 className="text-2xl font-bold text-[#ff014f]">
-                      Education
-                    </h2>
-                    <div>
-                      <h3 className="text-xl font-semibold">
-                        Higher Secondary Certificate (HSC)
-                      </h3>
-                      <p className="text-sm text-gray-300">
-                        Rastrapati Abdul Hamid Government College
-                      </p>
-                      <p className="text-sm text-gray-400">
-                        Humanities | 2022 – 2024
-                      </p>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold">
-                        Secondary School Certificate (SSC)
-                      </h3>
-                      <p className="text-sm text-gray-300">
-                        Shunka Barshikura High School
-                      </p>
-                      <p className="text-sm text-gray-400">
-                        Humanities | 2020 – 2022
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -479,7 +422,7 @@ const ModernContactSection = () => {
             </div>
 
             {/* FAQ Section */}
-            <div
+            {/* <div
               className={`mt-12 transition-all duration-1000 delay-700 ${
                 isLoaded
                   ? "opacity-100 translate-y-0"
@@ -519,7 +462,7 @@ const ModernContactSection = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 

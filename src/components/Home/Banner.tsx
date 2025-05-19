@@ -46,17 +46,7 @@ const Banner = () => {
           reality with clean code and creative solutions.
         </p>
 
-        <div className="flex justify-between items-end mt-6">
-          {/* <a href="/resume.pdf" download>
-            <button className="gap-2">
-              <Download className="w-4 h-4" />
-            </button>
-          </a> */}
-          <div>
-            <Button className="bg-[#ff014f] hover:text-[#ff014f] cursor-pointer">
-              Resume <Download size={20} />
-            </Button>
-          </div>
+        <div className=" mt-8">
           <div>
             <p className="text-sm uppercase tracking-widest text-gray-400 relative inline-block mb-1">
               <span className="absolute -left-6 top-1/2 w-4 h-[2px] bg-[#ff014f]"></span>

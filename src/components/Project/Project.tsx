@@ -1,6 +1,6 @@
 import Card from "../share/Card";
 
-const AllProjects = () => {
+const AllProjectsComponent = () => {
   const projects = [
     {
       id: 1,
@@ -83,4 +83,4 @@ const AllProjects = () => {
   );
 };
 
-export default AllProjects;
+export default AllProjectsComponent;

@@ -196,84 +196,39 @@ const ModernAboutSection = () => {
                   </div>
 
                   {/* Personal info with modern styling */}
-                  <div className="space-y-6">
-                    <h3 className="text-3xl font-bold">{personalInfo.name}</h3>
-                    <div className="inline-block bg-gradient-to-r from-[#ff014f] to-[#d11e53] px-4 py-1 rounded-full text-sm">
-                      {personalInfo.title}
-                    </div>
-                    <p className="text-gray-300 leading-relaxed">
-                      {personalInfo.bio}
-                    </p>
 
-                    {/* Modern contact info cards */}
-                    <div className="grid grid-cols-1 gap-4 mt-8">
-                      <div className="flex items-center gap-4 group">
-                        <div className="w-12 h-12 bg-[#2a2d32] rounded-xl flex items-center justify-center group-hover:bg-[#ff014f] transition-colors duration-300">
-                          <MapPin size={20} />
-                        </div>
-                        <div>
-                          <p className="text-gray-400 text-xs uppercase tracking-wider">
-                            Location
-                          </p>
-                          <p className="font-medium">{personalInfo.location}</p>
-                        </div>
+                  <div className="mt-8">
+                    <div className="relative backdrop-blur-sm bg-[#2a2d32]/40 rounded-2xl p-6 overflow-hidden">
+                      <div className="absolute inset-0 rounded-2xl overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#ff014f]/20 to-transparent opacity-30"></div>
                       </div>
-
-                      <div className="flex items-center gap-4 group">
-                        <div className="w-12 h-12 bg-[#2a2d32] rounded-xl flex items-center justify-center group-hover:bg-[#ff014f] transition-colors duration-300">
-                          <Mail size={20} />
-                        </div>
+                      <div className="relative rounded-2xl text-white space-y-4 z-10">
+                        <h2 className="text-2xl font-bold text-[#ff014f]">
+                          Education
+                        </h2>
                         <div>
-                          <p className="text-gray-400 text-xs uppercase tracking-wider">
-                            Email
+                          <h3 className="text-xl font-semibold">
+                            Higher Secondary Certificate (HSC)
+                          </h3>
+                          <p className="text-sm text-gray-300">
+                            Rastrapati Abdul Hamid Government College
                           </p>
-                          <p className="font-medium">{personalInfo.email}</p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-4 group">
-                        <div className="w-12 h-12 bg-[#2a2d32] rounded-xl flex items-center justify-center group-hover:bg-[#ff014f] transition-colors duration-300">
-                          <Phone size={20} />
-                        </div>
-                        <div>
-                          <p className="text-gray-400 text-xs uppercase tracking-wider">
-                            Phone
+                          <p className="text-sm text-gray-400">
+                            Humanities | 2022 – 2024
                           </p>
-                          <p className="font-medium">{personalInfo.phone}</p>
                         </div>
-                      </div>
-
-                      <div className="flex items-center gap-4 group">
-                        <div className="w-12 h-12 bg-[#2a2d32] rounded-xl flex items-center justify-center group-hover:bg-[#ff014f] transition-colors duration-300">
-                          <Calendar size={20} />
-                        </div>
-                        <div>
-                          <p className="text-gray-400 text-xs uppercase tracking-wider">
-                            Availability
+                        <div className="mt-4">
+                          <h3 className="text-xl font-semibold">
+                            Secondary School Certificate (SSC)
+                          </h3>
+                          <p className="text-sm text-gray-300">
+                            Shunka Barshikura High School
                           </p>
-                          <p className="font-medium">
-                            {personalInfo.availability}
+                          <p className="text-sm text-gray-400">
+                            Humanities | 2020 – 2022
                           </p>
                         </div>
                       </div>
-                    </div>
-
-                    {/* Download CV button with modern styling */}
-                    <div className="mt-8">
-                      <Link
-                        href="/resume.pdf"
-                        target="_blank"
-                        className="group relative inline-flex items-center gap-2 bg-[#2a2d32] text-white px-8 py-4 rounded-full overflow-hidden transition-all duration-300"
-                      >
-                        <span className="absolute inset-0 bg-gradient-to-r from-[#ff014f] to-[#d11e53] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></span>
-                        <span className="relative flex items-center gap-2">
-                          Download CV
-                          <Download
-                            size={16}
-                            className="group-hover:animate-bounce"
-                          />
-                        </span>
-                      </Link>
                     </div>
                   </div>
                 </div>
@@ -290,77 +245,127 @@ const ModernAboutSection = () => {
                 >
                   {/* Skills section with modern visualization */}
                   <div className="mb-16">
-                    <h3 className="text-2xl font-bold mb-8 relative inline-flex items-center">
+                    {/* <h3 className="text-2xl font-bold mb-8 relative inline-flex items-center">
                       <span className="w-6 h-6 bg-[#ff014f] rounded-full mr-3"></span>
-                      My Best Skills
-                    </h3>
-
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                      {skills.map((skill, index) => (
-                        <div
-                          key={skill.name}
-                          className="relative group"
-                          onMouseEnter={() => setActiveSkill(skill.name)}
-                          onMouseLeave={() => setActiveSkill(null)}
-                        >
-                          <div
-                            className={`aspect-square rounded-2xl flex flex-col items-center justify-center p-4 transition-all duration-300 ${
-                              activeSkill === skill.name
-                                ? "bg-gradient-to-br from-[#ff014f] to-[#d11e53] scale-105"
-                                : "bg-[#2a2d32] hover:bg-[#3a3d42]"
-                            }`}
-                            style={{ transitionDelay: `${index * 50}ms` }}
-                          >
-                            <div className="text-3xl font-bold mb-1">
-                              {skill.level}%
-                            </div>
-                            <div className="text-sm text-center">
-                              {skill.name}
-                            </div>
-                            <div className="text-xs text-gray-400 mt-1">
-                              {skill.category}
-                            </div>
-
-                            {/* Circular progress indicator */}
-                            <svg
-                              className="absolute inset-0 w-full h-full -rotate-90"
-                              viewBox="0 0 100 100"
-                            >
-                              <circle
-                                cx="50"
-                                cy="50"
-                                r="45"
-                                fill="none"
-                                stroke={
-                                  activeSkill === skill.name
-                                    ? "#ffffff20"
-                                    : "#ffffff10"
-                                }
-                                strokeWidth="6"
-                              />
-                              <circle
-                                cx="50"
-                                cy="50"
-                                r="45"
-                                fill="none"
-                                stroke={
-                                  activeSkill === skill.name
-                                    ? "#ffffff"
-                                    : "#ff014f"
-                                }
-                                strokeWidth="6"
-                                strokeDasharray={`${skill.level * 2.83} 283`}
-                                strokeLinecap="round"
-                                className="transition-all duration-1000 ease-out"
-                                style={{
-                                  strokeDashoffset: isLoaded ? "0" : "283",
-                                  transitionDelay: `${index * 100}ms`,
-                                }}
-                              />
-                            </svg>
+                      My Education
+                    </h3> */}
+                    {/* <div className="mt-12">
+                      <div className="relative backdrop-blur-sm bg-[#2a2d32]/40 rounded-2xl p-6 overflow-hidden">
+                        <div className="absolute inset-0 rounded-2xl overflow-hidden">
+                          <div className="absolute inset-0 bg-gradient-to-br from-[#ff014f]/20 to-transparent opacity-30"></div>
+                        </div>
+                        <div className="relative rounded-2xl text-white space-y-4 z-10">
+                          <h2 className="text-2xl font-bold text-[#ff014f]">
+                            Education
+                          </h2>
+                          <div>
+                            <h3 className="text-xl font-semibold">
+                              Higher Secondary Certificate (HSC)
+                            </h3>
+                            <p className="text-sm text-gray-300">
+                              Rastrapati Abdul Hamid Government College
+                            </p>
+                            <p className="text-sm text-gray-400">
+                              Humanities | 2022 – 2024
+                            </p>
+                          </div>
+                          <div>
+                            <h3 className="text-xl font-semibold">
+                              Secondary School Certificate (SSC)
+                            </h3>
+                            <p className="text-sm text-gray-300">
+                              Shunka Barshikura High School
+                            </p>
+                            <p className="text-sm text-gray-400">
+                              Humanities | 2020 – 2022
+                            </p>
                           </div>
                         </div>
-                      ))}
+                      </div>
+                    </div> */}
+                    <div className="space-y-6">
+                      <h3 className="text-3xl font-bold">
+                        {personalInfo.name}
+                      </h3>
+                      <div className="inline-block bg-gradient-to-r from-[#ff014f] to-[#d11e53] px-4 py-1 rounded-full text-sm">
+                        {personalInfo.title}
+                      </div>
+                      <p className="text-gray-300 leading-relaxed">
+                        {personalInfo.bio}
+                      </p>
+
+                      {/* Modern contact info cards */}
+                      {/* <div className="grid grid-cols-1 gap-4 mt-8">
+                        <div className="flex items-center gap-4 group">
+                          <div className="w-12 h-12 bg-[#2a2d32] rounded-xl flex items-center justify-center group-hover:bg-[#ff014f] transition-colors duration-300">
+                            <MapPin size={20} />
+                          </div>
+                          <div>
+                            <p className="text-gray-400 text-xs uppercase tracking-wider">
+                              Location
+                            </p>
+                            <p className="font-medium">
+                              {personalInfo.location}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-4 group">
+                          <div className="w-12 h-12 bg-[#2a2d32] rounded-xl flex items-center justify-center group-hover:bg-[#ff014f] transition-colors duration-300">
+                            <Mail size={20} />
+                          </div>
+                          <div>
+                            <p className="text-gray-400 text-xs uppercase tracking-wider">
+                              Email
+                            </p>
+                            <p className="font-medium">{personalInfo.email}</p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-4 group">
+                          <div className="w-12 h-12 bg-[#2a2d32] rounded-xl flex items-center justify-center group-hover:bg-[#ff014f] transition-colors duration-300">
+                            <Phone size={20} />
+                          </div>
+                          <div>
+                            <p className="text-gray-400 text-xs uppercase tracking-wider">
+                              Phone
+                            </p>
+                            <p className="font-medium">{personalInfo.phone}</p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-4 group">
+                          <div className="w-12 h-12 bg-[#2a2d32] rounded-xl flex items-center justify-center group-hover:bg-[#ff014f] transition-colors duration-300">
+                            <Calendar size={20} />
+                          </div>
+                          <div>
+                            <p className="text-gray-400 text-xs uppercase tracking-wider">
+                              Availability
+                            </p>
+                            <p className="font-medium">
+                              {personalInfo.availability}
+                            </p>
+                          </div>
+                        </div>
+                      </div> */}
+
+                      {/* Download CV button with modern styling */}
+                      <div className="mt-8">
+                        <Link
+                          href="/resume.pdf"
+                          target="_blank"
+                          className="group relative inline-flex items-center gap-2 bg-[#2a2d32] text-white px-8 py-4 rounded-full overflow-hidden transition-all duration-300"
+                        >
+                          <span className="absolute inset-0 bg-gradient-to-r from-[#ff014f] to-[#d11e53] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></span>
+                          <span className="relative flex items-center gap-2">
+                            Download CV
+                            <Download
+                              size={16}
+                              className="group-hover:animate-bounce"
+                            />
+                          </span>
+                        </Link>
+                      </div>
                     </div>
                   </div>
 

@@ -7,13 +7,13 @@ import AllTestmonial from "@/components/Testimonial/AllTestmonial";
 
 export default function Home() {
   return (
-    <div className="slg:px-0 px-3 ">
+    <div className="slg:px-0 px-4 ">
       <HerroSection />
       <AllProjects />
       <SkillsPage />
       <ModernAboutSection />
-      <ModernContactSection />
       <AllTestmonial />
+      <ModernContactSection />
     </div>
   );
 }
