@@ -1,5 +1,5 @@
 "use client";
-import { Menu, User, X } from "lucide-react";
+import { Download, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
@@ -84,16 +84,9 @@ const Naver = () => {
                   ))}
                 </div>
 
-                {session ? (
-                  <Button className="bg-red-500 hover:bg-white">Logout</Button>
-                ) : (
-                  <Link
-                    className="flex  hover:text-[#ff014f] items-center text-sm gap-0.5"
-                    href={"/login"}
-                  >
-                    Sing In <User />
-                  </Link>
-                )}
+                <Button className="bg-[#ff014f]">
+                  Resume <Download />
+                </Button>
               </div>
             </div>
           </div>

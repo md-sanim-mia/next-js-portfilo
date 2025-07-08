@@ -4,6 +4,7 @@ import { useState } from "react";
 
 const Testimonial = () => {
   const [isLoaded, setIsLoaded] = useState(true);
+  console.log(setIsLoaded);
   return (
     <div>
       <div

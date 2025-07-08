@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -19,26 +19,21 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { projectsData } from "../AllData/projectData";
-
-export default function ProjectDetails({ id }: { id: string }) {
+export default function ProjectDetails({ deatilsData }: { deatilsData: any }) {
   const [activeTab, setActiveTab] = useState("overview");
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
-  const project = projectsData.find((project) => project.id === Number(id));
-  console.log(project);
-  useEffect(() => {
-    // Auto-rotate gallery images every 5 seconds
-    const interval = setInterval(() => {
-      if (project && project.gallery) {
-        setActiveImageIndex((prev) => (prev + 1) % project.gallery.length);
-      }
-    }, 5000);
+  // const project = projectsData.find((project) => project._id === Number(id));
+  // console.log(project);
+  // useEffect(() => {
+  //   // Auto-rotate gallery images every 5 seconds
+  //   const interval = setInterval(() => {
+  //     if (project && project.gallery) {
+  //       setActiveImageIndex((prev) => (prev + 1) % project.gallery.length);
+  //     }
+  //   }, 5000);
 
-    return () => clearInterval(interval);
-  }, [project]);
-
-  if (!project) {
+  if (!deatilsData) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-[#1a1d21] to-[#212428] text-white flex items-center justify-center">
         <div className="text-center">
@@ -54,15 +49,15 @@ export default function ProjectDetails({ id }: { id: string }) {
     );
   }
 
-  const nextProject =
-    projectsData[
-      (projectsData.findIndex((p) => p.slug === id) + 1) % projectsData.length
-    ];
-  const prevProject =
-    projectsData[
-      (projectsData.findIndex((p) => p.slug === id) - 1 + projectsData.length) %
-        projectsData.length
-    ];
+  // const nextProject =
+  //   projectsData[
+  //     (projectsData.findIndex((p) => p.slug === id) + 1) % projectsData.length
+  //   ];
+  // const prevProject =
+  //   projectsData[
+  //     (projectsData.findIndex((p) => p.slug === id) - 1 + projectsData.length) %
+  //       projectsData.length
+  //   ];
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-[#1a1d21] to-[#212428] text-white pb-12">
@@ -77,9 +72,10 @@ export default function ProjectDetails({ id }: { id: string }) {
         >
           <Image
             src={
-              project.coverImage || "/placeholder.svg?height=1080&width=1920"
+              deatilsData?.images[0] ||
+              "/placeholder.svg?height=1080&width=1920"
             }
-            alt={project.title}
+            alt={deatilsData?.title}
             fill
             className="object-cover"
             priority
@@ -94,11 +90,11 @@ export default function ProjectDetails({ id }: { id: string }) {
             transition={{ duration: 0.6 }}
           >
             <h1 className="text-3xl md:text-5xl font-bold mb-3 text-white drop-shadow-lg">
-              {project.title}
+              {deatilsData?.title}
             </h1>
-            <p className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto drop-shadow-md">
+            {/* <p className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto drop-shadow-md">
               {project.shortDescription}
-            </p>
+            </p> */}
           </motion.div>
         </div>
 
@@ -119,7 +115,9 @@ export default function ProjectDetails({ id }: { id: string }) {
             <Calendar className="h-4 w-4 text-[#ff014f] mr-2" />
             <div>
               <p className="text-xs text-gray-400">Completed</p>
-              <p className="text-sm font-medium">{project.completionDate}</p>
+              <p className="text-sm font-medium">
+                {deatilsData?.completionDate}
+              </p>
             </div>
           </motion.div>
 
@@ -132,7 +130,7 @@ export default function ProjectDetails({ id }: { id: string }) {
             <Tag className="h-4 w-4 text-[#ff014f] mr-2" />
             <div>
               <p className="text-xs text-gray-400">Category</p>
-              <p className="text-sm font-medium">{project.category}</p>
+              <p className="text-sm font-medium">{deatilsData?.category}</p>
             </div>
           </motion.div>
 
@@ -145,7 +143,7 @@ export default function ProjectDetails({ id }: { id: string }) {
             <Clock className="h-4 w-4 text-[#ff014f] mr-2" />
             <div>
               <p className="text-xs text-gray-400">Duration</p>
-              <p className="text-sm font-medium">{project.duration}</p>
+              <p className="text-sm font-medium">{deatilsData?.duration}</p>
             </div>
           </motion.div>
         </div>
@@ -157,7 +155,7 @@ export default function ProjectDetails({ id }: { id: string }) {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="flex flex-wrap justify-center gap-2 mb-8"
         >
-          {project.technologies.map((tech, index) => (
+          {deatilsData?.technologies.map((tech: any, index: number) => (
             <motion.span
               key={tech}
               initial={{ opacity: 0, scale: 0.8 }}
@@ -188,10 +186,6 @@ export default function ProjectDetails({ id }: { id: string }) {
                 {
                   id: "challenges",
                   icon: <Code className="h-3.5 w-3.5 mr-1.5" />,
-                },
-                {
-                  id: "results",
-                  icon: <ChevronRight className="h-3.5 w-3.5 mr-1.5" />,
                 },
               ].map((tab) => (
                 <button
@@ -226,14 +220,7 @@ export default function ProjectDetails({ id }: { id: string }) {
                         Project Overview
                       </h2>
                       <div className="prose prose-invert max-w-none prose-sm">
-                        {project.description.map((paragraph, index) => (
-                          <p
-                            key={index}
-                            className="mb-3 text-gray-300 leading-relaxed text-sm"
-                          >
-                            {paragraph}
-                          </p>
-                        ))}
+                        <p>{deatilsData?.description}s</p>
                       </div>
                     </div>
                   )}
@@ -244,29 +231,31 @@ export default function ProjectDetails({ id }: { id: string }) {
                         Key Features
                       </h2>
                       <div className="space-y-4">
-                        {project.features.map((feature, index) => (
-                          <motion.div
-                            key={index}
-                            initial={{ opacity: 0, x: -5 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.3, delay: index * 0.1 }}
-                            className="flex"
-                          >
-                            <div className="mr-3 mt-0.5">
-                              <div className="w-6 h-6 rounded-full bg-[#ff014f]/20 flex items-center justify-center">
-                                <ChevronRight className="h-3.5 w-3.5 text-[#ff014f]" />
+                        {deatilsData?.features?.map(
+                          (feature: any, index: number) => (
+                            <motion.div
+                              key={index}
+                              initial={{ opacity: 0, x: -5 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ duration: 0.3, delay: index * 0.1 }}
+                              className="flex"
+                            >
+                              <div className="mr-3 mt-0.5">
+                                <div className="w-6 h-6 rounded-full bg-[#ff014f]/20 flex items-center justify-center">
+                                  <ChevronRight className="h-3.5 w-3.5 text-[#ff014f]" />
+                                </div>
                               </div>
-                            </div>
-                            <div>
-                              <h3 className="text-base font-medium mb-1">
-                                {feature.title}
-                              </h3>
-                              <p className="text-gray-300 text-sm">
-                                {feature.description}
-                              </p>
-                            </div>
-                          </motion.div>
-                        ))}
+                              <div>
+                                <h3 className="text-base font-medium mb-1">
+                                  {feature.title}
+                                </h3>
+                                <p className="text-gray-300 text-sm">
+                                  {feature.description}
+                                </p>
+                              </div>
+                            </motion.div>
+                          )
+                        )}
                       </div>
                     </div>
                   )}
@@ -277,34 +266,36 @@ export default function ProjectDetails({ id }: { id: string }) {
                         Challenges & Solutions
                       </h2>
                       <div className="space-y-6">
-                        {project.challenges.map((challenge, index) => (
-                          <div
-                            key={index}
-                            className="border-l-2 border-[#ff014f] pl-4 pb-4"
-                          >
-                            <h3 className="text-base font-medium mb-2">
-                              {challenge.title}
-                            </h3>
-                            <div className="mb-2">
-                              <p className="text-gray-300 mb-2 text-sm">
-                                {challenge.description}
-                              </p>
+                        {deatilsData?.challenges.map(
+                          (challenge: any, index: number) => (
+                            <div
+                              key={index}
+                              className="border-l-2 border-[#ff014f] pl-4 pb-4"
+                            >
+                              <h3 className="text-base font-medium mb-2">
+                                {challenge.title}
+                              </h3>
+                              <div className="mb-2">
+                                <p className="text-gray-300 mb-2 text-sm">
+                                  {challenge.description}
+                                </p>
+                              </div>
+                              <div>
+                                <h4 className="text-sm font-medium text-[#ff014f] mb-1">
+                                  Solution:
+                                </h4>
+                                <p className="text-gray-300 text-sm">
+                                  {challenge.solution}
+                                </p>
+                              </div>
                             </div>
-                            <div>
-                              <h4 className="text-sm font-medium text-[#ff014f] mb-1">
-                                Solution:
-                              </h4>
-                              <p className="text-gray-300 text-sm">
-                                {challenge.solution}
-                              </p>
-                            </div>
-                          </div>
-                        ))}
+                          )
+                        )}
                       </div>
                     </div>
                   )}
 
-                  {activeTab === "results" && (
+                  {/* {activeTab === "results" && (
                     <div>
                       <h2 className="text-xl font-bold mb-4 text-[#ff014f]">
                         Results & Impact
@@ -319,7 +310,6 @@ export default function ProjectDetails({ id }: { id: string }) {
                         </ul>
                       </div>
 
-                      {/* Testimonial if available - More Compact */}
                       {project.testimonial && (
                         <div className="mt-6 bg-gray-800/60 border border-gray-700 rounded-lg p-4 relative">
                           <div className="text-4xl text-[#ff014f] opacity-20 absolute top-2 left-2">
@@ -355,7 +345,7 @@ export default function ProjectDetails({ id }: { id: string }) {
                         </div>
                       )}
                     </div>
-                  )}
+                  )} */}
                 </motion.div>
               </AnimatePresence>
             </div>
@@ -380,7 +370,7 @@ export default function ProjectDetails({ id }: { id: string }) {
                   >
                     <Image
                       src={
-                        project.gallery[activeImageIndex] ||
+                        deatilsData?.images[activeImageIndex] ||
                         "/placeholder.svg?height=600&width=800"
                       }
                       alt={`Project image ${activeImageIndex + 1}`}
@@ -396,8 +386,8 @@ export default function ProjectDetails({ id }: { id: string }) {
                   onClick={() =>
                     setActiveImageIndex(
                       (prev) =>
-                        (prev - 1 + project.gallery.length) %
-                        project.gallery.length
+                        (prev - 1 + deatilsData?.images?.length) %
+                        deatilsData?.images?.length
                     )
                   }
                 >
@@ -407,7 +397,7 @@ export default function ProjectDetails({ id }: { id: string }) {
                   className="absolute right-2 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-black/50 flex items-center justify-center text-white hover:bg-black/70 transition-colors"
                   onClick={() =>
                     setActiveImageIndex(
-                      (prev) => (prev + 1) % project.gallery.length
+                      (prev) => (prev + 1) % deatilsData?.images?.length
                     )
                   }
                 >
@@ -417,7 +407,7 @@ export default function ProjectDetails({ id }: { id: string }) {
 
               {/* Thumbnails - More Compact */}
               <div className="grid grid-cols-4 gap-1">
-                {project.gallery.map((image, index) => (
+                {deatilsData?.images?.map((image: any, index: any) => (
                   <div
                     key={index}
                     className={cn(
@@ -446,9 +436,9 @@ export default function ProjectDetails({ id }: { id: string }) {
                 Project Links
               </h3>
               <div className="space-y-2">
-                {project.liveUrl && (
+                {deatilsData?.live && (
                   <a
-                    href={project.liveUrl}
+                    href={deatilsData?.live}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-between w-full px-3 py-2 bg-gray-800 rounded-md hover:bg-gray-700 transition-colors text-sm"
@@ -457,9 +447,9 @@ export default function ProjectDetails({ id }: { id: string }) {
                     <ExternalLink className="h-3.5 w-3.5 text-[#ff014f]" />
                   </a>
                 )}
-                {project.githubUrl && (
+                {deatilsData?.github && (
                   <a
-                    href={project.githubUrl}
+                    href={deatilsData?.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-between w-full px-3 py-2 bg-gray-800 rounded-md hover:bg-gray-700 transition-colors text-sm"
@@ -476,25 +466,25 @@ export default function ProjectDetails({ id }: { id: string }) {
         {/* Navigation to Other Projects - More Compact */}
         <div className="mt-8 grid grid-cols-2 gap-4">
           <Link
-            href={`/projects/${prevProject.slug}`}
+            href={`/projects`}
             className="group bg-gray-900/50 border border-gray-800 rounded-lg p-3 flex items-center hover:border-[#ff014f] transition-all"
           >
             <ArrowLeft className="h-4 w-4 mr-3 text-[#ff014f]" />
             <div>
               <p className="text-xs text-gray-400">Previous</p>
               <h4 className="text-sm font-medium group-hover:text-[#ff014f] transition-colors">
-                {prevProject.title}
+                {"Prev project title"}
               </h4>
             </div>
           </Link>
           <Link
-            href={`/projects/${nextProject.slug}`}
+            href={`/projects`}
             className="group bg-gray-900/50 border border-gray-800 rounded-lg p-3 flex items-center justify-end hover:border-[#ff014f] transition-all"
           >
             <div className="text-right">
               <p className="text-xs text-gray-400">Next</p>
               <h4 className="text-sm font-medium group-hover:text-[#ff014f] transition-colors">
-                {nextProject.title}
+                Next project title
               </h4>
             </div>
             <ArrowRight className="h-4 w-4 ml-3 text-[#ff014f]" />

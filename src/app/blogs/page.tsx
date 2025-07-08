@@ -1,9 +1,11 @@
 import Blogs from "@/components/Blogs/Blogs";
+import { getAllblog } from "@/services";
 
-const BlogsPage = () => {
+const BlogsPage = async () => {
+  const { data } = await getAllblog();
   return (
     <div className="max-w-screen-xl mx-auto">
-      <Blogs />
+      <Blogs data={data} />
     </div>
   );
 };

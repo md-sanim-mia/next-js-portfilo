@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react";
 
-export default function BlogDetails({ params }: { params: { slug: string } }) {
+export default function BlogDetails({ data }: { data: any }) {
+  const { image, title } = data;
   return (
     <main className="min-h-screen bg-gradient-to-br from-[#1a1d21] to-[#212428] text-white">
       <div className="container mx-auto px-4 py-12">
@@ -16,14 +17,12 @@ export default function BlogDetails({ params }: { params: { slug: string } }) {
 
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4">
-              this is blog title
-            </h1>
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">{title}</h1>
 
             <div className="flex flex-wrap gap-4 text-gray-400 mb-6">
               <div className="flex items-center">
                 <Calendar className="h-4 w-4 mr-2" />
-                {/* <span>{formatDate(blog.date)}</span> */}
+                <span>{data?.createdAt}</span>
               </div>
               <div className="flex items-center">
                 <Clock className="h-4 w-4 mr-2" />
@@ -38,7 +37,7 @@ export default function BlogDetails({ params }: { params: { slug: string } }) {
 
           <div className="relative w-full h-[400px] mb-8 rounded-lg overflow-hidden">
             <Image
-              src={"/placeholder.svg"}
+              src={image || "/placeholder.svg"}
               alt={"title"}
               fill
               className="object-cover"
@@ -48,12 +47,7 @@ export default function BlogDetails({ params }: { params: { slug: string } }) {
           <div className="prose prose-invert max-w-none">
             {/* <p className="text-lg leading-relaxed mb-6">{blog.excerpt}</p> */}
 
-            {/* {blog.content.map((paragraph, index) => (
-              <p key={index} className="mb-6">
-                {paragraph}
-              </p>
-            ))} */}
-
+            {data?.description}
             <div className="border-t border-gray-800 pt-6 mt-12">
               <div className="flex flex-wrap gap-2">
                 {/* {blog.tags.map((tag) => (

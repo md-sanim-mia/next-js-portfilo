@@ -1,16 +1,10 @@
 "use client";
-import {
-  ArrowDown,
-  Download,
-  Facebook,
-  Github,
-  Instagram,
-  Linkedin,
-} from "lucide-react";
+import { Facebook, Github, Instagram, Linkedin } from "lucide-react";
 import Image from "next/image";
 import profile from "..//..//..//public/sanims.png";
 import { Typewriter } from "react-simple-typewriter";
-import { Button } from "../ui/button";
+
+import Link from "next/link";
 const Banner = () => {
   return (
     <div className="px-1 pt-6 gap-4 flex-row-reverse lg:flex  items-center max-w-screen-xl mx-auto">
@@ -53,14 +47,30 @@ const Banner = () => {
               FIND WITH ME
             </p>
             <div className="flex gap-4">
-              {[Facebook, Instagram, Linkedin, Github].map((Icon, i) => (
-                <div
-                  key={i}
-                  className="w-12 h-12 bg-[#2a2d32] rounded-lg flex items-center justify-center hover:bg-[#ff014f] hover:-translate-y-2 hover:shadow-lg hover:shadow-[#ff014f]/20 transition-all duration-300 cursor-pointer"
-                >
-                  <Icon size={20} />
+              <Link target="_blank" href={"https://github.com/md-sanim-mia"}>
+                <div className="w-12 h-12 bg-[#2a2d32] rounded-lg flex items-center justify-center hover:bg-[#ff014f] hover:-translate-y-2 hover:shadow-lg hover:shadow-[#ff014f]/20 transition-all duration-300 cursor-pointer">
+                  <Github size={20} />
                 </div>
-              ))}
+              </Link>
+              <Link
+                target="_blank"
+                href={"https://www.linkedin.com/in/sanim-mia"}
+              >
+                <div className="w-12 h-12 bg-[#2a2d32] rounded-lg flex items-center justify-center hover:bg-[#ff014f] hover:-translate-y-2 hover:shadow-lg hover:shadow-[#ff014f]/20 transition-all duration-300 cursor-pointer">
+                  <Linkedin size={20} />
+                </div>
+              </Link>
+              <Link
+                target="_blank"
+                href={"https://www.facebook.com/sanim.hasan.14619"}
+              >
+                <div className="w-12 h-12 bg-[#2a2d32] rounded-lg flex items-center justify-center hover:bg-[#ff014f] hover:-translate-y-2 hover:shadow-lg hover:shadow-[#ff014f]/20 transition-all duration-300 cursor-pointer">
+                  <Facebook size={20} />
+                </div>
+              </Link>
+              <div className="w-12 h-12 bg-[#2a2d32] rounded-lg flex items-center justify-center hover:bg-[#ff014f] hover:-translate-y-2 hover:shadow-lg hover:shadow-[#ff014f]/20 transition-all duration-300 cursor-pointer">
+                <Instagram size={20} />
+              </div>
             </div>
           </div>
         </div>

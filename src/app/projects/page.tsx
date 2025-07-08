@@ -1,9 +1,11 @@
 import AllProjects from "@/components/Project/AllProjects";
+import { getAllProject } from "@/services";
 
-const ProjectsPage = () => {
+const ProjectsPage = async () => {
+  const { data } = await getAllProject();
   return (
     <div>
-      <AllProjects />
+      <AllProjects project={data} />
     </div>
   );
 };

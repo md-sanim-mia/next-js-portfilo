@@ -3,7 +3,6 @@
 import type React from "react";
 
 import { useState, useEffect, useRef, type FormEvent } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import {
   Mail,
@@ -17,7 +16,6 @@ import {
   CheckCircle,
   AlertCircle,
 } from "lucide-react";
-import Testimonial from "../Testimonial/Testimonial";
 
 const ModernContactSection = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -25,7 +23,7 @@ const ModernContactSection = () => {
     name: "",
     email: "",
     subject: "",
-    message: "",
+    description: "",
   });
   const [formStatus, setFormStatus] = useState<"idle" | "success" | "error">(
     "idle"
@@ -108,10 +106,16 @@ const ModernContactSection = () => {
     e.preventDefault();
 
     // Simple validation
-    if (!formState.name || !formState.email || !formState.message) {
+    if (
+      !formState.name ||
+      !formState.email ||
+      !formState.description ||
+      !formState.subject
+    ) {
       setFormStatus("error");
       return;
     }
+    console.log(formState);
 
     // Simulate form submission
     setTimeout(() => {
@@ -120,7 +124,7 @@ const ModernContactSection = () => {
         name: "",
         email: "",
         subject: "",
-        message: "",
+        description: "",
       });
 
       // Reset form status after 3 seconds
@@ -133,7 +137,7 @@ const ModernContactSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden  py-16 md:py-20 lg:py-24 bg-gradient-to-b from-[#1a1d21] via-[#212428] to-[#1a1d21]"
+      className="relative overflow-hidden  pb-16 md:pb-20 lg:pb-24 bg-gradient-to-b from-[#1a1d21] via-[#212428] to-[#1a1d21]"
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -248,7 +252,7 @@ const ModernContactSection = () => {
                             : "bg-[#2a2d32] group-hover:bg-[#3a3d42]"
                         }`}
                       >
-                        {item.icon}
+                        .{item.icon}
                       </div>
                       <div>
                         <h4 className="text-lg font-medium mb-1">
@@ -385,7 +389,7 @@ const ModernContactSection = () => {
                       <textarea
                         id="message"
                         name="message"
-                        value={formState.message}
+                        value={formState.description}
                         onChange={handleInputChange}
                         rows={6}
                         className="w-full bg-[#2a2d32] border border-[#3a3d42] rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#ff014f]/50 focus:border-transparent transition-all duration-300 resize-none"
@@ -466,8 +470,7 @@ const ModernContactSection = () => {
           </div>
         </div>
 
-        {/* Newsletter subscription */}
-        {/* <div
+        {/* o<div
           className={`mt-24 transition-all duration-1000 delay-1000 ${
             isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}

@@ -1,17 +1,19 @@
 import ProjectDetails from "@/components/Project/ProjectDeatils";
+import { getSingleProject } from "@/services";
 
 const ProjectsDeatilsPage = async ({
   params,
 }: {
-  params: { projectId: string };
+  params: Promise<{ projectId: string }>;
 }) => {
   const { projectId } = await params;
-  console.log(projectId);
+  const { data: deatilsData } = await getSingleProject(projectId);
+
   return (
     <div>
-      <ProjectDetails id={projectId} />
+      <ProjectDetails deatilsData={deatilsData} />
     </div>
   );
 };
-0;
+
 export default ProjectsDeatilsPage;

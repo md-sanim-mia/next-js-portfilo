@@ -7,12 +7,12 @@ const Card = ({ project }: { project: any }) => {
   return (
     <div>
       <div
-        key={project?.id}
+        key={project?._id}
         className="group bg-[#2a2d32] rounded-xl overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-[#ff014f]/10 hover:-translate-y-2"
       >
         <div className="relative overflow-hidden">
           <Image
-            src={project?.image || "/placeholder.svg"}
+            src={project?.images[0] || "/placeholder.svg"}
             alt={project?.title}
             width={600}
             height={400}
@@ -20,13 +20,14 @@ const Card = ({ project }: { project: any }) => {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#000000cc] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-between p-6">
             <Link
-              href={project?.github}
+              target="_blank"
+              href={project?.github || "/github"}
               className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-[#212428] hover:bg-[#ff014f] hover:text-white transition-colors duration-300"
             >
               <Github size={20} />
             </Link>
             <Link
-              href={project?.link}
+              href={`projects/${project?._id}`}
               className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-[#212428] hover:bg-[#ff014f] hover:text-white transition-colors duration-300"
             >
               <Eye size={20} />
@@ -51,7 +52,8 @@ const Card = ({ project }: { project: any }) => {
             {project?.description}
           </p>
           <Link
-            href={project?.link}
+            target="_blank"
+            href={project?.live || "/live"}
             className="inline-flex items-center text-sm font-medium text-white hover:text-[#ff014f] transition-colors duration-300"
           >
             View Project

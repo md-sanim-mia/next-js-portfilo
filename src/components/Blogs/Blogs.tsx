@@ -11,7 +11,7 @@ import {
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 
-const Blogs = () => {
+const Blogs = ({ data }: { data: any }) => {
   const categories = [
     { value: "all", label: "All Categories" },
     { value: "javascript", label: "JavaScript" },
@@ -71,8 +71,8 @@ const Blogs = () => {
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {[1, 2, 3, 4, 5, 6].map((item) => (
-          <BlogCard key={item} />
+        {data?.map((item: any) => (
+          <BlogCard blog={data} key={item?._id} />
         ))}
       </div>
       <div className="flex justify-center items-center space-x-2">

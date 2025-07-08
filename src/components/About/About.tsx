@@ -230,6 +230,38 @@ const ModernAboutSection = () => {
                         </div>
                       </div>
                     </div>
+                    <div className="relative backdrop-blur-sm bg-[#2a2d32]/40 rounded-2xl p-6 overflow-hidden">
+                      <div className="absolute inset-0 rounded-2xl overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#ff014f]/20 to-transparent opacity-30"></div>
+                      </div>
+                      <div className="relative rounded-2xl text-white space-y-4 z-10">
+                        <h2 className="text-2xl font-bold text-[#ff014f]">
+                          Education
+                        </h2>
+                        <div>
+                          <h3 className="text-xl font-semibold">
+                            Higher Secondary Certificate (HSC)
+                          </h3>
+                          <p className="text-sm text-gray-300">
+                            Rastrapati Abdul Hamid Government College
+                          </p>
+                          <p className="text-sm text-gray-400">
+                            Humanities | 2022 – 2024
+                          </p>
+                        </div>
+                        <div className="mt-4">
+                          <h3 className="text-xl font-semibold">
+                            Secondary School Certificate (SSC)
+                          </h3>
+                          <p className="text-sm text-gray-300">
+                            Shunka Barshikura High School
+                          </p>
+                          <p className="text-sm text-gray-400">
+                            Humanities | 2020 – 2022
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
